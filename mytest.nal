@@ -1,0 +1,123 @@
+{
+  PRINT "----TEST_START----"
+  PRINTN "\n"
+  PRINT "After testing all VAR & CON, now I start to write and test INSTRUCT."
+
+  PRINTN "\n"
+
+  PRINT "(Test PRINT & PRINTN CON.)"
+  PRINT "PRINT outputs with a linefeed."
+  PRINTN "PRINT outputs without a linefeed. "
+  PRINT "Next output starts from here."
+
+  PRINTN "\n"
+
+  PRINT "(Test SET & PRINT VAR.)"
+  $A = "Happy New Year."
+  %Z = 2020
+  PRINT $A
+  PRINT %Z
+  PRINT "$A should be Happy New Year(with quotes) & %Z should be 2020. Correct!"
+  PRINT "If I set same VAR, the value of VAR should be the new one."
+  $A = "COOOOL!"
+  %Z = 99
+  PRINT $A
+  PRINT %Z
+  PRINT "$A should be COOOOL!(with quotes) & %Z should be 99. Correct!"
+  %D = 13
+  %E = %D
+  PRINT %E
+  PRINT "%E should be same as %D(13) Correct!"
+
+  PRINTN "\n"
+
+  PRINT "(Test IFEQUAL.)"
+  $A = "Bristol"
+  IFEQUAL ( $A , "Bristol" )
+  {
+     PRINT "If $A equals to Bristol(with quotes), print this sentence. Correct!"
+  }
+  PRINT "And I found out that if I want to deal with rot18 between #, I have to rewrite PRINT, PRINTN, SET, IFEQUAL."
+  PRINT "Fortunately, I thought that converting rot18 in hash to quates form when reading file would solve all the problems."
+  $A = #Gnvcrv#
+  IFEQUAL ( $A , #Gnvcrv# )
+  {
+     PRINT #Vs $N rdhnyf gb Gnvcrv(jvgu dhbgrf), cevag guvf fragrapr. Pbeerpg!#
+  }
+  $A = "Gnvcrv"
+  IFEQUAL ( $A , #Gnvcrv# )
+  {
+     PRINT "If print this out, it's wrong!"
+  }
+
+  PRINTN "\n"
+
+  PRINT "(Test JUMP.)"
+  PRINT "While testing JUMP, I found that if I read file by scanf, I have no way to treat things in quotes as a word."
+  PRINT "Therefore, I rewrite the readfile again, and merge the things in quotes and hashs into one word and store it in p."
+  JUMP 116
+  PRINT "This is word 114 & 115, if print this out, it's wrong!"
+  PRINT "JUMP correct!"
+
+  PRINTN "\n"
+
+  PRINT "(Test FILE_OPEN.)"
+  FILE "file.txt"
+
+  PRINTN "\n"
+
+  PRINT "(Test RND.)"
+  RND ( %A )
+  PRINT %A
+  RND ( %B )
+  PRINT %B
+  RND ( %C )
+  PRINT %C
+  PRINT "RND correct!"
+  PRINT "While testing RND first time, %A, %B and %C are random but always be the same."
+  PRINT "I found that it was because I put srand(time(NULL)) in ipt_RND. The computer calculate too fast and the same time base was used."
+
+  PRINTN "\n"
+
+  PRINT "(Test INC.)"
+  %A = 0
+  INC ( %A )
+  PRINT %A
+  INC ( %A )
+  PRINT %A
+  INC ( %A )
+  PRINT %A
+  PRINT "INC correct!"
+
+  PRINTN "\n"
+
+  PRINT "(Test IFGREATER.)"
+  %A = 5
+  IFGREATER ( %A , 9 )
+  {
+     PRINT "%A is not greater than 9, if print this out, it's wrong!"
+  }
+  %A = 16
+  IFGREATER ( %A , 9 )
+  {
+     PRINT "IFGREATER correct!"
+  }
+  PRINT "I wanted to put JUMP in IFGREATER at first, but it will cause wrong instruction because it failed to get the last } in IFGREATER."
+  PRINT "The solution is add ABORT."
+
+  PRINTN "\n"
+
+  PRINT "(Test COMMENT.)"
+  @If print this out, it's wrong!@
+  PRINT "COMMENT correct!."
+
+  PRINTN "\n"
+
+  PRINT "(Test ABORT.)"
+  PRINT "ABORT correct!."
+  PRINTN "\n"
+  PRINT "----TEST_END----"
+  ABORT
+  PRINT "If print this out, it's wrong!"
+
+}

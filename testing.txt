@@ -1,0 +1,39 @@
+Testing procedure:
+
+(1) Test VARCON, CON, STRCON, NUMCON, VAR, STRVAR, NUMVAR in test() in nal.c because they don't have return value.
+(2) Test interpret functions in correct syntax in mytest.nal because incorrect syntax will interrupt the execution.
+    I didn't test INNUM and IN2STR in mytest.nal because they need inputs.
+(3) test all functions in wrong syntax in mytest2.nal.
+
+The following is what I do & found during testing:
+
+(1) If PRINT/PRINTN undefined variable, output would be "Error : you havn't set the variable yet."
+(2) If undefined variable is used in IFEQUAL, IFGREATER or INC, output would be "Error : you havn't set the variable yet."
+(3) If compare strings in IFGREATER, string would be seem as zero.
+
+During test2.nal:
+
+(1) I found out that if I want to deal with rot18 between #, I have to rewrite PRINT, PRINTN, SET, IFEQUAL.
+    Fortunately, I thought that converting rot18 in hash to quates form when reading file would solve all the problems.
+
+During mytest.nal:
+
+(1) While testing JUMP, I found that if I read file by scanf, I have no way to treat things in quotes as a word.
+    Therefore, I rewrite the readfile again, and merge the things in quotes and hashs into one word and store it in p.
+
+(2) While testing RND first time, %A, %B and %C are random but always be the same.
+    I found that it was because I put srand(time(NULL)) in ipt_RND. The computer calculate too fast and the same time base was used.
+
+(3) I wanted to put JUMP in IFGREATER at first, but it will cause wrong instruction because it failed to get the last } in IFGREATER.
+    The solution is add ABORT.
+
+During mytest2.nal:
+
+(1) I merged all things between "" a single word by starting to strcat string when meet first " and end when meet another one.
+    I couldn't write @$A = "HELLO WORD"@ because the read file would be like:
+    @$A
+    =
+    "HELLO WORD"@...........
+    and therefore the strcat would never end until it meet another ".
+    The output will be "Error : did you miss @ ?"
+    I have to write @$A = "HELLO WORD" @ instead.

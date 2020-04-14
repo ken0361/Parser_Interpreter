@@ -1,0 +1,151 @@
+{
+  @Test PRINT & PRINTN CON.@
+
+  @PRINT HELLO WORLD"@
+  @Error : wrong varcon, did you miss " or # or $ or % ?@
+
+  @PRINT "HELLO WORLD@
+  @Error : wrong con, did you miss " or # ?@
+  @Because " appeared later, output became Error : wrong instruction ?@
+
+  @PRINT HELLO WORLD@
+  @Error : wrong varcon, did you miss " or # or $ or % ?@
+
+  @PRINTN HELLO WORLD"@
+  @Error : wrong varcon, did you miss " or # or $ or % ?@
+
+  @PRINTN "HELLO WORLD@
+  @Error : wrong con, did you miss " or # ?@
+  @Because " appeared later, output became Error : wrong instruction ?@
+
+  @PRINTN HELLO WORLD@
+  @Error : wrong varcon, did you miss " or # or $ or % ?@
+
+  @Test SET & PRINT VAR.@
+
+  @%Aaa = 2020@
+  @Error : wrong numvar@
+
+  @%A12 = 2020@
+  @Error : wrong numvar@
+
+  @$Aaa = "HELLO WORD" @
+  @Error : wrong strvar@
+
+  @$A12 = "HELLO WORD" @
+  @Error : wrong strvar@
+
+  @PRINT %Z@
+  @Error : you havn't set the variable yet.@
+
+  @PRINTN %Z@
+  @Error : you havn't set the variable yet.@
+
+  @Test IFEQUAL.@
+
+  @IFEQUAL  $A , "Bristol" )
+  {
+  }@
+  @Error : did you miss ( ?@
+
+  @IFEQUAL ( $A "Bristol" )
+  {
+  }@
+  @Error : did you miss , ?@
+
+  @IFEQUAL ( $A , "Bristol"
+  {
+  }@
+  @Error : did you miss ) ?@
+
+  @IFEQUAL ( $A , "Bristol" )
+
+  }@
+  @Error : did you miss { ?@
+
+  @IFEQUAL ( $A , "Bristol" )
+  {@
+  @Error : wrong instruction ?@
+
+  @IFEQUAL ( %KK , 5 )
+  {
+  }@
+  @Error : you havn't set the variable yet.@
+
+  @IFEQUAL ( "HIHI" , $KK )
+  {
+  }@
+  @Error : you havn't set the variable yet.@
+
+  @Test JUMP.@
+
+  @JUMP HI@
+  @Error : wrong numcon@
+
+  @Test FILE_OPEN.@
+
+  @FILE test.txt@
+  @Error : wrong con, did you miss " or # ?@
+
+  @Test RND.@
+
+  @RND  %A )@
+  @Error : did you miss ( ?@
+
+  @RND ( %A@
+  @Error : did you miss ) ?@
+
+  @RND ( A )@
+  @Error : wrong numvar, did you miss % ?@
+
+  @Test INC.@
+
+  @INC  %A )@
+  @Error : did you miss ( ?@
+
+  @INC ( %A@
+  @Error : did you miss ) ?@
+
+  @INC ( A )@
+  @Error : wrong numvar, did you miss % ?@
+
+  @INC ( %KK )@
+  @Error : you havn't set the variable yet.@
+
+  @Test IFGREATER.@
+
+  @IFGREATER  5 , %A )
+  {
+  }@
+  @Error : did you miss ( ?@
+
+  @IFGREATER ( 5 %A )
+  {
+  }@
+  @Error : did you miss , ?@
+
+  @IFGREATER ( 5 , %A
+  {
+  }@
+  @Error : did you miss ) ?@
+
+  @IFGREATER ( 5 , %A )
+
+  }@
+  @Error : did you miss { ?@
+
+  @IFGREATER ( 5 , %A )
+  {@
+  @Error : wrong instruction ?@
+
+  @IFGREATER ( 5 , %ZZ )
+  {
+  }@
+  @Error : you havn't set the variable yet.@
+
+  @IFGREATER ( %ZZ , 5 )
+  {
+  }@
+  @Error : you havn't set the variable yet.@
+
+}
