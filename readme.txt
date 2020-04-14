@@ -1,3 +1,7 @@
+This is the project about parser and interpreter from Neill's C course.
+
+The following is the rule:
+
 <PROGRAM> := "{" <INSTRS>
 <INSTRS> := "}" | <INSTRUCT> <INSTRS>
 <INSTRUCT> := <FILE> | <ABORT> | <INPUT> | <IFCOND> | <INC> | <SET> |
